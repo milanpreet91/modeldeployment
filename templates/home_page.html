@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> Email Spam classifier </title>
+    <!--Add a style tag to center the body-->
+    <style>
+        body {
+            text-align: center;
+        }
+        button {
+            background-color: aliceblue;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <h1>Email Spam classifier</h1>
+    <div>
+        <form method="POST" action="/predict"> <!--Clicking on button should send a POST request to server, 
+            make sure you mention that home route accepts POST request-->
+            <textarea name=email-content rows="12" cols="26" placeholder="Type or paste email link"></textarea>
+            <div> <!--used to create separate block to place a button or text area or a form--> 
+                <button type="submit"> Check spam </button>
+                <a href="/"> Reset </a>
+            </div>
+        </form>
+    </div>
+    <div>
+        <!--Now we want to get response from the POST, 
+        so mention in the defintion of home route that it accepts GET request also-->
+        {% if result==1 %}
+            <h2 style="color:red">{{ "SPAM" }}</h2> <!--This text is a paramter passed through 
+            render_template function -->
+        {% elif result==0 %}
+            <h2 style = "color: green">{{ "NOT_SPAM" }}</h2>
+        {% endif %}
+        <!--called to load this html template. 
+        That text parameter has value text set in the function render_template -->
+    </div>
+</body>
+</html>
